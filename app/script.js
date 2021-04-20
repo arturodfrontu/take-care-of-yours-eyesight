@@ -1,8 +1,7 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
 class App extends React.Component {
-
   state = {
     status: "off",
     time: 1200,
@@ -18,6 +17,15 @@ class App extends React.Component {
     return `${min}:${sec}`;
   };
 
+  step = () => {};
+
+  startTimer = () => {
+    this.setState({
+      timer: setInterval(this.step, 1000),
+      time: 1200,
+      status: "work",
+    });
+  };
 
   render() {
     const { status } = this.state;
@@ -44,22 +52,14 @@ class App extends React.Component {
         )}
 
         {status === "off" && (
-          <button className="btn">
+          <button className="btn" onClick={this.startTimer}>
             Start
           </button>
         )}
 
-        {status !== "off" && (
-          <button className="btn">
-            {" "}
-            Stop
-          </button>
-        )}
+        {status !== "off" && <button className="btn"> Stop</button>}
 
-        <button className="btn btn-close">
-          {" "}
-          X{" "}
-        </button>
+        <button className="btn btn-close"> X </button>
       </div>
     );
   }
