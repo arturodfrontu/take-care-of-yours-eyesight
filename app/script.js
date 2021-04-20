@@ -3,6 +3,22 @@ import { render } from 'react-dom';
 
 class App extends React.Component {
 
+  state = {
+    status: "off",
+    time: 1200,
+    timer: null,
+  };
+
+  formatTime = (time) => {
+    let min = Math.floor(time / 60);
+    let sec = Math.floor(time % 60);
+    min = min.toString().padStart(2, "0");
+    sec = sec.toString().padStart(2, "0");
+
+    return `${min}:${sec}`;
+  };
+
+
   render() {
     return (
       <div>
