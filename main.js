@@ -10,7 +10,7 @@ const main = () => {
     webPreferences: {
       nodeIntegration: true
     },
-    width: 660,
+    width: 520,
     height: 650,
   })
 
