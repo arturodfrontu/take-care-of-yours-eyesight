@@ -27,6 +27,14 @@ class App extends React.Component {
     });
   };
 
+  stopTimer = () => {
+    this.setState({
+      time: 0,
+      timer: clearInterval(this.step),
+      status: "off",
+    });
+  };
+
   render() {
     const { status } = this.state;
     return (
@@ -57,7 +65,12 @@ class App extends React.Component {
           </button>
         )}
 
-        {status !== "off" && <button className="btn"> Stop</button>}
+        {status !== "off" && (
+          <button className="btn" onClick={this.stopTimer}>
+            {" "}
+            Stop
+          </button>
+        )}
 
         <button className="btn btn-close"> X </button>
       </div>
