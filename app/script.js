@@ -4,7 +4,7 @@ import { render } from "react-dom";
 class App extends React.Component {
   state = {
     status: "off",
-    time: 1200,
+    time: 0,
     timer: null,
   };
 
@@ -17,7 +17,15 @@ class App extends React.Component {
     return `${min}:${sec}`;
   };
 
-  step = () => {};
+  step = () => {
+    this.setState({ time: this.state.time - 1 });
+
+    if (this.state.time == 0 && this.state.status === "work") {
+      this.setState({ status: "rest", time: 20 });
+    } else if (this.state.time == 0 && this.state.status === "rest") {
+      this.setState({ status: "work", time: 1200 });
+    }
+  };
 
   startTimer = () => {
     this.setState({
