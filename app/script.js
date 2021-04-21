@@ -19,15 +19,18 @@ class App extends React.Component {
 
   step = () => {
     this.setState({ time: this.state.time - 1 });
-
-    if (this.state.time == 0 && this.state.status === "work") {
-      this.setState({ status: "rest", time: 20 });
-      this.playBell();
-    } else if (this.state.time == 0 && this.state.status === "rest") {
-      this.setState({ status: "work", time: 1200 });
-      this.playBell();
+    
+    let stateToSet = { status: "rest", time: 20 };
+    
+    if (this.state.time != 0) {return;}
+    
+    if (this.state.status === "rest") {
+      stateToSet = { status: "work", time: 1200 };
     }
-  };
+    
+    this.setState(stateToSet);
+    this.playBell();
+  }
 
   startTimer = () => {
     this.setState({
